@@ -29,7 +29,7 @@
 
 1. 克隆本仓库到本地：
    ```bash
-   git clone [https://github.com/your_username/matplotlib_GraphPad_style.git](https://github.com/your_username/matplotlib_GraphPad_style.git)
+   git clone https://github.com/YangShu233-Snow/matplotlib_GraphPad_style
    ```
 2. 进入你感兴趣的样式目录，例如柱状图：
    ```bash
