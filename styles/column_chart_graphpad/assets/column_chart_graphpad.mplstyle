@@ -1,0 +1,25 @@
+# 字体设置
+font.family : sans-serif
+font.sans-serif : Arial, Helvetica, DejaVu Sans
+font.weight : bold
+
+# 坐标轴和标题字体粗细
+axes.labelweight : bold
+axes.titleweight : bold
+
+# 坐标轴线宽和边框隐藏
+axes.linewidth : 1.5
+axes.spines.top : False
+axes.spines.right : False
+
+# 刻度线粗细与长度
+xtick.major.width : 1.5
+ytick.major.width : 1.5
+xtick.major.size : 6
+ytick.major.size : 6
+
+# 字体大小
+xtick.labelsize : 12
+ytick.labelsize : 12
+axes.labelsize : 14
+axes.titlesize : 16
