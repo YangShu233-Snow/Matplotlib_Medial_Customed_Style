@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from matplotlib import colormaps
 import numpy as np
 
 from pathlib import Path
@@ -34,7 +33,7 @@ def main():
     # 图表标题
     title = 'something'
     # 保存文件名
-    img_name = 'fluorescence_comparison_plot.png'
+    img_name = 'example.png'
 
     # 示例数据
     groups = ['Con', 'KO']

@@ -22,7 +22,8 @@
 
 | 样式名称 | 描述 | 快速查看 |
 | :--- | :--- | :--- |
-| **Column Chart GraphPad** | 经典的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。 | [👉 查看详情](./styles/column_chart_graphpad/readme.md) |
+| **Column Chart GraphPad** | 经典的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。 | [👉 查看详情](./styles/single_columns_chart/readme.md) |
+| **Column Chart GraphPad** | 单图多表的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。 | [👉 查看详情](./styles/mutiple_columns_charts/readme.md) |
 | *(待添加)* | *(更多样式开发中...)* | |
 
 ## 🛠️ 快速上手

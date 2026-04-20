@@ -4,7 +4,7 @@
 
 ## 📊 效果预览
 
-![Fluorescence Comparison Plot](./img/fluorescence_comparison_plot.png)
+![Fluorescence Comparison Plot](./img/example.png)
 
 ## ✨ 核心特性
 
@@ -20,7 +20,7 @@
 python example.py
 ```
 
-运行后，图表将自动生成并保存在 `./img/fluorescence_comparison_plot.png`。
+运行后，图表将自动生成并保存在 `./img/example.png`。
 
 ## 🛠️ 如何替换为你自己的数据？
 
