@@ -50,13 +50,6 @@ def generate_prism_colors(num_groups):
 
 
 def generate_jittered_x(y: np.ndarray, r_x: float, r_y: float) -> np.ndarray:
-    """
-    生成独立的X轴和Y轴防重叠抖动。
-    
-    :param y: 原数据的 Y 坐标
-    :param r_x: X 轴方向的排斥半径 (通常很小，例如 0.02~0.05)
-    :param r_y: Y 轴方向的排斥半径 (根据数据量级决定，例如 50~100)
-    """
     n = len(y)
     x = np.zeros(n)
     
@@ -150,12 +143,16 @@ def main():
     
     stars_marks = [
         [(1, 3)],
-        [(1, 2)], 
+        [(1, 2)],
         []
     ]
 
+    r = 2
+
     # --- 图表初始化 ---
-    fig, ax = plt.subplots(figsize=(len(categories) * 2.5, 5), dpi=300)
+    fig_width = sum(len(category[1]) for category in categories) * 0.3 + len(categories) * 0.3 + 2.5
+    fig_heigth = 1.5 + np.max(all_means) / np.min(all_means)
+    fig, ax = plt.subplots(figsize=(fig_width, fig_heigth), dpi=300)
 
     # --- 计算柱子位置 ---
     x_base = np.arange(len(categories))  # 基础 X 坐标：[0, 1, 2]
@@ -188,13 +185,13 @@ def main():
                capsize=5, error_kw={'elinewidth': 1.2, 'capthick': 1.2})
 
         for i, data in enumerate(raw_data):
-            x_jittered = generate_jittered_x(data, r_x=0.02, r_y=30) + all_x_positions[i]
+            x_jittered = generate_jittered_x(data, r_x=len(categories) / fig_width * r / 72, r_y= np.max(all_means) / fig_heigth * r / 72) + all_x_positions[i]
             ax.scatter(x_jittered, data, 
                     color='white',     
                     edgecolor='black', 
                     alpha=0.75,        
-                    s=20,              
-                    zorder=3)          
+                    s=np.pi * r ** 2,              
+                    zorder=3)
 
         stars_mark = stars_marks[index]
         stars_indexes = [star_mark[0] for star_mark in stars_mark]
