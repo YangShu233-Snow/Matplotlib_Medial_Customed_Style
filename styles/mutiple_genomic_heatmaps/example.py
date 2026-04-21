@@ -40,7 +40,7 @@ def format_heatmap_axes(ax: Axes, title: str, is_first: bool = False):
 
 def main():
     # config
-    img_name = 'example.png'
+    img_name = 'example'
     titles = ['ANY R1', 'ANY R2', 'IgG R1', 'IgG R2']
     red_to_blue = True
     vmin, vmax = -3.5, 3.0
@@ -94,12 +94,13 @@ def main():
     ax_last.plot([0.5, 0.5 + scale], [-0.12, -0.12], transform=ax_last.transAxes, color='black', linewidth=1.5, clip_on=False)
     ax_last.text(0.5 + scale / 2, -0.14, scale_label, transform=ax_last.transAxes, ha='center', va='top', fontsize=10)
 
-    save_dir = root_path / 'img'
+    save_dir = root_path / Path('./img')
     save_dir.mkdir(parents=True, exist_ok=True)
-    save_path = save_dir / img_name
-
-    plt.savefig(save_path, bbox_inches='tight')
-    print(f"Picture saved to: {save_path}")
+    save_paths = [save_dir / f"{img_name}.png", save_dir / f"{img_name}.pdf"]
+    
+    plt.tight_layout()
+    for save_path in save_paths:
+        plt.savefig(save_path)
     # plt.show()
 
 if __name__ == '__main__':

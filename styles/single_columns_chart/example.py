@@ -33,7 +33,7 @@ def main():
     # 图表标题
     title = 'something'
     # 保存文件名
-    img_name = 'example.png'
+    img_name = 'example'
 
     # 示例数据
     groups = ['Con', 'KO']
@@ -62,10 +62,13 @@ def main():
     ax.set_ylabel(ylabel)
     ax.set_title(title, pad=15)
 
-    save_path = root_path / Path('./img') / img_name
-
+    save_dir = root_path / Path('./img')
+    save_dir.mkdir(parents=True, exist_ok=True)
+    save_paths = [save_dir / f"{img_name}.png", save_dir / f"{img_name}.pdf"]
+    
     plt.tight_layout()
-    plt.savefig(save_path, bbox_inches='tight')
+    for save_path in save_paths:
+        plt.savefig(save_path, bbox_inches='tight')
     # 如果你在非图形界面的环境下，plt.show()是不可用的（比如SSH登录服务器）
     # plt.show()
 
