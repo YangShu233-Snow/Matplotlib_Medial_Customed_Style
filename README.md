@@ -1,6 +1,24 @@
+<div align="center">
+   
 # Matplotlib_Medial_Customed_Style
 
-> Collections of customed styles for medical field.
+🔬 **Reusable · Instant · Professional · Evolving** 🔬   
+</div>
+
+<div>
+   <p align="center">
+      <a href="https://github.com/YangShu233-Snow/Matplotlib_Medial_Customed_Styles/actions/workflows/pytest.yaml">
+         <img src="https://github.com/YangShu233-Snow/Matplotlib_Medial_Customed_Styles/actions/workflows/pytest.yaml/badge.svg" alt="pytest">
+      </a>
+      <a href="https://matplotlib.org/">
+         <img src="https://img.shields.io/badge/style-Matplotlib-blue?logo=python" alt="Matiplotlib">
+      </a>
+      <a href="https://github.com/YangShu233-Snow/Matplotlib_Medial_Customed_Styles/pulls">
+         <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="pull requests">
+      </a>
+   </p>
+</div>
+
 
 本项目旨在通过 Python 的 `matplotlib` 库，复刻包含 **GraphPad Prism** 简约风格在内的学术图表样式。无需手动调整繁琐的格式，只需引入相应的 `.mplstyle` 样式文件，即可一键生成符合高质量期刊出版要求的精美图表。
 
