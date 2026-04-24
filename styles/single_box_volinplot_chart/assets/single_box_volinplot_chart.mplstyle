@@ -1,0 +1,49 @@
+# 字体设置
+font.family : sans-serif
+font.sans-serif : Arial, Helvetica, DejaVu Sans
+
+# 标题间距
+axes.titlepad : 10
+
+# 坐标轴和标题字体粗细
+axes.labelweight : bold
+axes.titleweight : bold
+
+# 坐标轴线宽和边框隐藏
+axes.linewidth : 1.5
+axes.spines.top : False
+axes.spines.right : False
+
+# 刻度线粗细与长度
+xtick.major.width : 1.5
+ytick.major.width : 1.5
+xtick.major.size : 6
+ytick.major.size : 6
+
+# 字体大小
+xtick.labelsize : 10
+ytick.labelsize : 10
+axes.labelsize : 14
+axes.titlesize : 16
+
+# 小提琴图样式 (背景)
+patch.facecolor: CCCCCC
+patch.edgecolor: black
+patch.linewidth: 0.8
+
+# 箱型图样式 (内部叠加)
+boxplot.patchartist: True
+boxplot.boxprops.color: black
+boxplot.boxprops.linewidth: 1.0
+boxplot.whiskerprops.color: black
+boxplot.whiskerprops.linewidth: 1.0
+boxplot.capprops.color: black
+boxplot.capprops.linewidth: 1.0
+
+# 箱线图中位数样式 (白色线以在黑盒中突显)
+boxplot.showmeans: False
+boxplot.medianprops.color: white
+boxplot.medianprops.linewidth: 1.5
+
+# 颜色循环 (用于 split 模式: 蓝色和橙色)
+axes.prop_cycle: cycler('color', ['0072B2', 'D55E00'])
