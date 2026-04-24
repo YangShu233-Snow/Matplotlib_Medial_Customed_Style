@@ -4,9 +4,10 @@ figure.titleweight : bold
 font.family : sans-serif
 font.sans-serif : Arial, Helvetica, DejaVu Sans
 
-# 坐标轴和标题字体粗细
+# 坐标轴和标题设置
 axes.labelweight : bold
 axes.titleweight : bold
+axes.titlepad : 15
 
 # 坐标轴线宽和边框隐藏
 axes.linewidth : 1.5
@@ -23,11 +24,15 @@ xtick.minor.size: 0
 # 刻度标签与坐标轴距离
 xtick.minor.pad : 5
 
-# 散点线宽
+# 柱状图与散点线宽
 patch.linewidth: 0.5
+patch.edgecolor: grey
+errorbar.capsize: 4
+lines.linewidth: 1.0
 
 # 字体大小
 xtick.labelsize : 10
 ytick.labelsize : 10
 axes.labelsize : 14
 axes.titlesize : 16
+text.size : 10

@@ -52,7 +52,7 @@ def draw_stars(
             linewidth=1.0
         )
         ax.text(star_x_position, star_y_position, '*' * stars,
-                ha='center', va='bottom', fontsize=10)
+                ha='center', va='bottom')
 
 
 def generate_prism_colors(num_groups):
@@ -201,8 +201,7 @@ def main():
 
             asymmetric_errs = [errs[i]]
             ax.bar(x_current, means[i], yerr=asymmetric_errs, width=bar_width, align='center',
-               label=category[1][i], color=colors[i], edgecolor='black', linewidth=1.5,
-               capsize=5, error_kw={'elinewidth': 1.2, 'capthick': 1.2})
+               label=category[1][i], color=colors[i])
         
         group_index += 1
 
@@ -246,7 +245,7 @@ def main():
     ax.set_xticklabels(all_groups_name, minor=True, rotation=45)
 
     ax.set_ylabel(ylabel)
-    ax.set_title(title, pad=15)
+    ax.set_title(title)
 
     # --- 保存图表 ---
     save_dir = root_path / Path('./img')
