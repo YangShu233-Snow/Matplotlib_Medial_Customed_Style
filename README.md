@@ -1,6 +1,6 @@
 <div align="center">
    
-# Matplotlib_Medial_Customed_Style
+# Matplotlib_Medial_Customed_Styles
 
 🔬 **Reusable · Instant · Professional · Evolving** 🔬   
 </div>
@@ -55,6 +55,7 @@
 | **Single Columns Scatter Chart** | 经典的柱状散点图，支持数据散点、误差线和自动显著性标注。 | [👉 查看详情](./styles/single_columns_scatter_chart/readme.md) |
 | **Single Clustered Columns Scatter Chart** | 经典的分组柱状散点图，支持智能防重叠散点、误差线和自动显著性标注。 | [👉 查看详情](./styles/single_clustered_columns_scatter_chart/readme.md) |
 | **Clustered Scatter Chart** | 经典的聚类散点图，集成 DBSCAN 算法并支持自动参数估计。 | [👉 查看详情](./styles/clustered_scatter_chart/readme.md) |
+| **Single Linear Regression Scatter Chart** | 经典的单组线性回归散点图，包含线性拟合直线及 $R^2$、$P$ 值等统计信息。 | [👉 查看详情](./styles/single_linear_regression_scatter_chart/readme.md) |
 | *(待添加)* | *(更多样式开发中...)* | |
 
 ### DeepTools
