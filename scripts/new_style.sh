@@ -84,6 +84,6 @@ xtick.labelsize : 12
 ytick.labelsize : 12
 axes.labelsize : 14
 axes.titlesize : 16
+EOF
 
 echo "已在 $TARGET_DIR 中生成预定文件。"
-EOF

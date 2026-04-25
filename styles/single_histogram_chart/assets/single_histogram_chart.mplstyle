@@ -1,0 +1,34 @@
+# 字体设置
+font.family : sans-serif
+font.sans-serif : Arial, Helvetica, DejaVu Sans
+font.weight : normal
+
+# 坐标轴和标题字体粗细 (仅标签和标题加粗，刻度保持常规)
+axes.labelweight : bold
+axes.titleweight : bold
+
+# 坐标轴线宽和边框隐藏
+axes.linewidth : 1.5
+axes.spines.top : False
+axes.spines.right : False
+
+# 刻度线粗细与长度
+xtick.major.width : 1.5
+ytick.major.width : 1.5
+xtick.major.size : 6
+ytick.major.size : 6
+
+# 字体大小
+xtick.labelsize : 12
+ytick.labelsize : 12
+axes.labelsize : 14
+axes.titlesize : 16
+
+# 直方图/柱状图外观 (深色边框)
+patch.facecolor: CCCCCC
+patch.edgecolor: black
+patch.linewidth: 1.5
+patch.force_edgecolor: True
+
+# 覆盖默认颜色循环，使 hist 优先使用八度灰
+axes.prop_cycle: cycler('color', ['CCCCCC'])

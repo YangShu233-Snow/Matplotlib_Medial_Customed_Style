@@ -22,7 +22,7 @@ If you are an AI Agent participating in the development of this project, you **M
 - [ ] **Dynamic Paths**: Use `pathlib.Path(__file__).parent` for all file resolutions.
 - [ ] **Style Initialization**: Load `.mplstyle` BEFORE creating any figures or axes.
 - [ ] **Script Structure**: Use `main()`, type hints, and follow the template in `CONTRIBUTING.md`.
-- [ ] **Aesthetics**: Inward ticks, removed top/right spines, bold labels (`font.weight: bold`), and upper-only error bars for biological data.
+- [ ] **Aesthetics**: Removed top/right spines, bold labels (`font.weight: bold`), and upper-only error bars for biological data.
 - [ ] **Dual Export**: Always save results to `img/` as both `.png` and `.pdf`.
 
 ## ⚠️ Pitfalls to Avoid

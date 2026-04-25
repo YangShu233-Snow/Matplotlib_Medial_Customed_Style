@@ -61,6 +61,7 @@
 | **Single Boxplot Chart** | 经典的简约箱线图，支持同时展示中位数与均值线。 | [👉 查看详情](./styles/single_boxplot_chart/readme.md) |
 | **Single Violinplot Chart** | 经典的小提琴图，支持 Scott MISE 带宽优化，包含标准分布与对比分离（Split）两种模式。 | [👉 查看详情](./styles/single_violinplot_chart/readme.md) |
 | **Single Box-Violinplot Chart** | 箱线图与小提琴图的叠加组合图，内部极简黑盒精确标定四分位数，外部小提琴展示概率密度分布。 | [👉 查看详情](./styles/single_box_violinplot_chart/readme.md) |
+| **Single Histogram Chart** | 直方图，采用八度灰配色，内置 Freedman-Diaconis 准则自动计算最优分组数。 | [👉 查看详情](./styles/single_histogram_chart/readme.md) |
 | *(待添加)* | *(更多样式开发中...)* | |
 
 ### DeepTools
