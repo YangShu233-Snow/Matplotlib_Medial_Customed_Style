@@ -24,11 +24,10 @@ ytick.labelsize : 12
 axes.labelsize : 14
 axes.titlesize : 16
 
-# 直方图/柱状图外观 (深色边框)
+# 直方图外观 (八度灰，无边框)
 patch.facecolor: CCCCCC
-patch.edgecolor: black
+patch.edgecolor: CCCCCC
 patch.linewidth: 1.5
-patch.force_edgecolor: True
 
 # 覆盖默认颜色循环，使 hist 优先使用八度灰
 axes.prop_cycle: cycler('color', ['CCCCCC'])

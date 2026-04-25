@@ -1,6 +1,6 @@
 # 直方图 - 八度灰风格 (Histogram Chart Octave Gray Style)
 
-这是一个用于生成经典直方图（Histogram）的 matplotlib 示例，采用八度灰配色及 GraphPad Prism 类似的边框风格。
+这是一个用于生成经典直方图（Histogram）的 matplotlib 示例，采用八度灰配色，无边框纯净风格。
 
 ## 📊 效果预览
 
