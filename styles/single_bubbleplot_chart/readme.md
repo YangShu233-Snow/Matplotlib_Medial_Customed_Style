@@ -31,13 +31,27 @@ python example.py
 
 ```python
 # --- config ---
-title = 'Title'
-color_highlight = True          # 是否启用彩色
-p_value_ticks = True             # True: P 值阈值; False: 均匀等分
+img_name = 'example'            # 输出文件名
+title = 'Title'                 # 图表标题
+legend_label = 'legend'         # 图例标题
+x_label  = 'Value'              # X 轴标签
 
-# --- data ---
-categories = [...]               # Y 轴标签列表
-x_values = np.array([...])       # X 轴数值
-bubble_size_data = np.array([...])  # 气泡大小数据
-color_data = np.array([...])     # 颜色映射数据
+color_highlight = True          # True: 彩色映射; False: 统一灰色
+p_value_ticks = True            # True: 显示标准 P 值阈值; False: colorbar 刻度均匀等分
+
+# --- 气泡大小 ---
+# 将 bubble_size_data（原始数值）线性映射到 min_bubble_size ~ max_bubble_size（散点的 point 面积）
+min_bubble_size = 20
+max_bubble_size = 100
+
+# 图例会显示 percentile 对应分位数的气泡大小（此处为最小值/中位数/最大值三档）
+percentile = [0, 0.50, 1]
+
+# --- 模拟数据 ---
+np.random.seed(12)
+categories = [f'Sample_{chr(index)}' for index in range(ord('A'), ord('N'))]   # Y 轴标签列表
+x_values = np.random.normal(20, 10, len(categories))                            # X 轴数值
+
+bubble_size_data = np.random.normal(50, 20, len(categories))                    # 控制气泡大小
+color_data = np.random.randint(5, 100, len(categories)) / 1000                  # 控制气泡颜色
 ```

@@ -34,5 +34,5 @@ legend.frameon : False
 legend.labelspacing : 1.5
 legend.borderpad : 1
 
-# 色彩循环 (红→紫全色谱)
-axes.prop_cycle : cycler('color', ['CC0000', 'FF6600', 'FFCC00', '339900', '0066CC', '6600CC', 'AA00FF'])
+# 色彩循环 (红→紫全色谱, 13 色渐变)
+axes.prop_cycle : cycler('color', ['CC0000', 'E53300', 'FF6600', 'FF9900', 'FFCC00', '99B200', '339900', '1A8066', '0066CC', '3333CC', '6600CC', '8800E6', 'AA00FF'])
