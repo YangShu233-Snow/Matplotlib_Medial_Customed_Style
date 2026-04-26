@@ -50,28 +50,98 @@
 
 ### GraphPad Prism
 
-| 样式名称 | 描述 | 快速查看 |
-| :--- | :--- | :--- |
-| **Single Columns Chart** | 经典的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。 | [👉 查看详情](./styles/single_columns_chart/readme.md) |
-| **Mutiple Columns Chart** | 经典的单图多表的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。 | [👉 查看详情](./styles/mutiple_columns_charts/readme.md) |
-| **Single Columns Scatter Chart** | 经典的柱状散点图，支持数据散点、误差线和自动显著性标注。 | [👉 查看详情](./styles/single_columns_scatter_chart/readme.md) |
-| **Single Clustered Columns Scatter Chart** | 经典的分组柱状散点图，支持智能防重叠散点、误差线和自动显著性标注。 | [👉 查看详情](./styles/single_clustered_columns_scatter_chart/readme.md) |
-| **Clustered Scatter Chart** | 经典的聚类散点图，集成 DBSCAN 算法并支持自动参数估计。 | [👉 查看详情](./styles/clustered_scatter_chart/readme.md) |
-| **Single Linear Regression Scatter Chart** | 经典的单组线性回归散点图，包含线性拟合直线及 $R^2$、$P$ 值等统计信息。 | [👉 查看详情](./styles/single_linear_regression_scatter_chart/readme.md) |
-| **Single Boxplot Chart** | 经典的简约箱线图，支持同时展示中位数与均值线。 | [👉 查看详情](./styles/single_boxplot_chart/readme.md) |
-| **Single Violinplot Chart** | 经典的小提琴图，支持 Scott/Silverman 带宽优化与多种核函数，包含标准分布与对比分离（Split）两种模式。 | [👉 查看详情](./styles/single_violinplot_chart/readme.md) |
-| **Single Box-Violinplot Chart** | 箱线图与小提琴图的叠加组合图，支持 Scott/Silverman 带宽优化与多种核函数，内部极简黑盒精确标定四分位数，外部小提琴展示概率密度分布。 | [👉 查看详情](./styles/single_box_violinplot_chart/readme.md) |
-| **Single Histogram Chart** | 直方图，采用八度灰配色，内置 Freedman-Diaconis 准则自动计算最优分组数。 | [👉 查看详情](./styles/single_histogram_chart/readme.md) |
-| **Single Densityplot Chart** | 密度分布图，复刻平滑曲线与半透明填充效果，内置 Scott 和 Silverman 带宽优化规则。 | [👉 查看详情](./styles/single_densityplot_chart/readme.md) |
-| *(待添加)* | *(更多样式开发中...)* | |
+<table>
+  <tr>
+    <th>样式名称</th>
+    <th>描述</th>
+    <th>快速查看</th>
+  </tr>
+  <tr>
+    <td><b>Single Columns Chart</b></td>
+    <td>经典的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。</td>
+    <td nowrap><a href='./styles/single_columns_chart/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><b>Mutiple Columns Chart</b></td>
+    <td>经典的单图多表的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。</td>
+    <td nowrap><a href='./styles/mutiple_columns_charts/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><b>Single Columns Scatter Chart</b></td>
+    <td>经典的柱状散点图，支持数据散点、误差线和自动显著性标注。</td>
+    <td nowrap><a href='./styles/single_columns_scatter_chart/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><b>Single Clustered Columns Scatter Chart</b></td>
+    <td>经典的分组柱状散点图，支持智能防重叠散点、误差线和自动显著性标注。</td>
+    <td nowrap><a href='./styles/single_clustered_columns_scatter_chart/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><b>Clustered Scatter Chart</b></td>
+    <td>经典的聚类散点图，集成 DBSCAN 算法并支持自动参数估计。</td>
+    <td nowrap><a href='./styles/clustered_scatter_chart/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><b>Single Linear Regression Scatter Chart</b></td>
+    <td>经典的单组线性回归散点图，包含线性拟合直线及 $R^2$、$P$ 值等统计信息。</td>
+    <td nowrap><a href='./styles/single_linear_regression_scatter_chart/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><b>Single Boxplot Chart</b></td>
+    <td>经典的简约箱线图，支持同时展示中位数与均值线。</td>
+    <td nowrap><a href='./styles/single_boxplot_chart/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><b>Single Violinplot Chart</b></td>
+    <td>经典的小提琴图，支持 Scott/Silverman 带宽优化与多种核函数，包含标准分布与对比分离（Split）两种模式。</td>
+    <td nowrap><a href='./styles/single_violinplot_chart/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><b>Single Box-Violinplot Chart</b></td>
+    <td>箱线图与小提琴图的叠加组合图，支持 Scott/Silverman 带宽优化与多种核函数，内部极简黑盒精确标定四分位数，外部小提琴展示概率密度分布。</td>
+    <td nowrap><a href='./styles/single_box_violinplot_chart/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><b>Single Histogram Chart</b></td>
+    <td>直方图，采用八度灰配色，内置 Freedman-Diaconis 准则自动计算最优分组数。</td>
+    <td nowrap><a href='./styles/single_histogram_chart/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><b>Single Densityplot Chart</b></td>
+    <td>密度分布图，复刻平滑曲线与半透明填充效果，内置 Scott 和 Silverman 带宽优化规则。</td>
+    <td nowrap><a href='./styles/single_densityplot_chart/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><i>(待添加)</i></td>
+    <td><i>(更多样式开发中...)</i></td>
+    <td></td>
+  </tr>
+</table>
 
 ### DeepTools
 
-| 样式名称 | 描述 | 快速查看 |
-| :--- | :--- | :--- |
-| **Mutiple Genomic Heatmaps** | 单图多表基因组学聚合热图，带有标尺与色彩条图例。 | [👉 查看详情](./styles/mutiple_genomic_heatmaps/readme.md) |
-| **Clustered Genomic Heatmap** | 经典的带聚类树基因组学热图，支持行列聚类。 | [👉 查看详情](./styles/clustered_genomic_heatmap/readme.md) |
-| *(待添加)* | *(更多样式开发中...)* | |
+<table>
+  <tr>
+    <th>样式名称</th>
+    <th>描述</th>
+    <th>快速查看</th>
+  </tr>
+  <tr>
+    <td><b>Mutiple Genomic Heatmaps</b></td>
+    <td>单图多表基因组学聚合热图，带有标尺与色彩条图例。</td>
+    <td nowrap><a href='./styles/mutiple_genomic_heatmaps/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><b>Clustered Genomic Heatmap</b></td>
+    <td>经典的带聚类树基因组学热图，支持行列聚类。</td>
+    <td nowrap><a href='./styles/clustered_genomic_heatmap/readme.md'>👉 查看详情</a></td>
+  </tr>
+  <tr>
+    <td><i>(待添加)</i></td>
+    <td><i>(更多样式开发中...)</i></td>
+    <td></td>
+  </tr>
+</table>
 
 ## 🛠️ 快速上手
 
