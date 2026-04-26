@@ -1,15 +1,11 @@
-from typing import List, Tuple
+from pathlib import Path
+from typing import Tuple
 
-from matplotlib.axes import Axes
-from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import matplotlib.pyplot as plt
 import numpy as np
-
 import scipy.cluster.hierarchy as sch
-
-from pathlib import Path
-
-
+from matplotlib.axes import Axes
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 root_path = Path(__file__).parent
 # 修改为要求的样式文件路径
@@ -73,7 +69,7 @@ def main():
         method=clustering_algorithm,
         metric=clustering_algorithm_distance
     )
-    
+
     fig, ax = plt.subplots(figsize=(5, 5))
     grids = fig.add_gridspec(
         2, 2,
@@ -102,7 +98,7 @@ def main():
     im = ax_heatmap.imshow(ordered_data, vmin=-3, vmax=3, aspect='auto')
 
     # colorbar
-    cax: Axes = inset_axes(ax_heatmap, width="25%", height="3%", loc='lower left', 
+    cax: Axes = inset_axes(ax_heatmap, width="25%", height="3%", loc='lower left',
                  bbox_to_anchor=(0.03, -0.2, 1, 1), bbox_transform=ax_heatmap.transAxes)
     cbar = fig.colorbar(im, cax=cax, orientation='horizontal')
     cbar.set_label(

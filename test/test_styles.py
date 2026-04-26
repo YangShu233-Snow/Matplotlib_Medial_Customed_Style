@@ -1,7 +1,8 @@
 # tests/test_styles.py
-import pytest
 from pathlib import Path
+
 import matplotlib.pyplot as plt
+import pytest
 
 # 获取项目根目录下的 styles 文件夹路径
 PROJECT_ROOT = Path(__file__).parent.parent

@@ -1,8 +1,8 @@
-import matplotlib.pyplot as plt
-import numpy as np
-
 from pathlib import Path
 from typing import List
+
+import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.axes import Axes
 
 root_path = Path(__file__).parent
@@ -40,7 +40,7 @@ def main():
     all_means = [[1200, 3500], [1200, 3500]]
     all_errs = [[300, 400], [300, 400]]
     stars_marks = [[[1], [3]], [[1], [4]]]
-    
+
     total_columns_count = len([item for groups in all_groups for item in groups])
     total_charts_count = len(all_groups)
 
@@ -49,15 +49,15 @@ def main():
 
     for index, (ylabel, title, groups, means, errs, (groups_id, stars)) in enumerate(zip(ylabels, titles, all_groups, all_means, all_errs, stars_marks)):
         x_pos = np.arange(len(groups))
-        # 默认误差线仅作上半部分，若需要“工”字完整误差线，则asymmetric_errs = [errs] 
-        asymmetric_errs = [[0] * len(groups), errs] 
+        # 默认误差线仅作上半部分，若需要“工”字完整误差线，则asymmetric_errs = [errs]
+        asymmetric_errs = [[0] * len(groups), errs]
 
         colors = generate_prism_colors(len(groups))
 
         # 图表柱子的样式
         axs[index].bar(x_pos, means, yerr=asymmetric_errs, width=0.6,
                 color=colors)
-        
+
         draw_stars(axs[index], groups_id=groups_id, stars=stars, means=means, errs=errs)
 
         axs[index].set_xlim(-0.6, len(groups) - 1 + 0.6)
@@ -69,7 +69,7 @@ def main():
     save_dir = root_path / Path('./img')
     save_dir.mkdir(parents=True, exist_ok=True)
     save_paths = [save_dir / f"{img_name}.png", save_dir / f"{img_name}.pdf"]
-    
+
     plt.tight_layout()
     for save_path in save_paths:
         plt.savefig(save_path, bbox_inches='tight')

@@ -20,8 +20,8 @@
 
 *   **GraphPad 审美预设**：通过 `assets/single_violinplot_chart.mplstyle` 全局定义了加粗的坐标轴、向内的刻度线以及符合学术规范的字体设置。
 *   **双重变体支持**：
-    *   `example.py`: 快速生成经典的单色小提琴图。
-    *   `example_split.py`: 生成基于颜色循环（蓝色与橙色对比）的分离式小提琴图，并自动生成图例。
+  * `example.py`: 快速生成经典的单色小提琴图。
+  * `example_split.py`: 生成基于颜色循环（蓝色与橙色对比）的分离式小提琴图，并自动生成图例。
 *   **样本量自动标注**：内置 `draw_sample_sizes` 函数，可自动在每个小提琴最上方标注样本数量（标准模式为 $n=xxx$，分离模式为 $n=x/y$）。
 *   **Sklearn KDE 重写**：弃用 Matplotlib 内置 violinplot，改用 `sklearn.neighbors.KernelDensity` 手动计算密度，精度更高且支持多种核函数（gaussian、tophat、epanechnikov 等）。
 *   **智能带宽选择**：支持 Scott 和 Silverman 两种带宽估计算法，可根据数据分布自动调整核密度平滑程度。
@@ -45,7 +45,9 @@ python example_split.py
 ## 🛠️ 如何替换为你自己的数据？
 
 ### 修改标准模式 (`example.py`)
+
 在 `main` 函数中修改数据列表及配置：
+
 ```python
 # --- config ---
 show_n = True  # 是否展示样本量 n=xxx
@@ -62,7 +64,9 @@ data = [
 ```
 
 ### 修改分离模式 (`example_split.py`)
+
 分离模式要求数据格式为成对列表：
+
 ```python
 # --- config ---
 show_n = True  # 是否展示样本量 n=x/y

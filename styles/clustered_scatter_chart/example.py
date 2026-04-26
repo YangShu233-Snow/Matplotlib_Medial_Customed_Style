@@ -1,18 +1,15 @@
+from pathlib import Path
 from typing import Any, Generator, Tuple
 
-from matplotlib.axes import Axes
 import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
-from matplotlib.patches import Ellipse, Patch
 import matplotlib.transforms as transforms
 import numpy as np
-
+from matplotlib.axes import Axes
+from matplotlib.colors import ListedColormap
+from matplotlib.patches import Ellipse, Patch
+from scipy.spatial import ConvexHull
 from sklearn.cluster import DBSCAN
 from sklearn.neighbors import NearestNeighbors
-from sklearn.preprocessing import StandardScaler
-from scipy.spatial import ConvexHull
-
-from pathlib import Path
 
 root_path = Path(__file__).parent
 # 修改为要求的样式文件路径
@@ -144,10 +141,10 @@ def main():
         for index, (hull, cluster_points) in enumerate(calculate_convex_hull(x_data, y_data, labels)):
             if clustered_with_convex_hull:
                 for simplex in hull.simplices:
-                    ax.plot(cluster_points[simplex, 0], cluster_points[simplex, 1], 
-                            color='grey', 
-                            linewidth=0.75, 
-                            alpha=0.75, 
+                    ax.plot(cluster_points[simplex, 0], cluster_points[simplex, 1],
+                            color='grey',
+                            linewidth=0.75,
+                            alpha=0.75,
                             linestyle=':')
 
             if clustered_with_confidence_ellipse:

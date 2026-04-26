@@ -29,6 +29,7 @@ pytest
 ```
 
 测试主要涵盖以下内容：
+
 1. **样式合法性测试**：确保所有的 `.mplstyle` 文件都能被 `matplotlib` 正确解析。
 2. **示例脚本运行测试**：模拟运行每个样式下的 `example.py`，确保脚本没有语法错误且能正常生成图表。
 
@@ -39,7 +40,8 @@ pytest
 本项目欢迎的提交类型包括：
 
 - 完整的样式，它至少应当包含如下的文件结构：
-    ```
+
+    ```text
     style_name
         |-- assets
         |   `-- your_style.mplstyle
@@ -48,6 +50,7 @@ pytest
         |   `-- example.png
         `-- readme.md
     ```
+
 - 对任何已经存在的样式调整，包含修改 `mplstyle` 文件或 `example.py` 代码
 - 对样式示例数据的纠正，如果它不符合特定图标的需求（请原谅我可能缺乏特定领域的专业知识）
 
@@ -66,7 +69,8 @@ pytest
 请确保你的 Pull Request 符合以下规范：
 
 - 完整的项目结构：
-    ```
+
+    ```text
     style_name
         |-- assets
         |   `-- your_style.mplstyle
@@ -75,8 +79,10 @@ pytest
         |   `-- example.png
         `-- readme.md
     ```
+
 - 在 Pull Requests 中包含样式名称、样式介绍与例图（这一部分完全可以复制样式中的 `readme.md`）
 - `example.py` 应尽可能遵循项目原有的代码风格：
+
   ```py
   # import something
   import matplotlib.pyplot as plt
@@ -87,10 +93,10 @@ pytest
   # 清晰的脚本风格
   def sub_func(arg_1: int, arg_2: dict):
       pass
-    
+
   def main():
       sub_func()
-    
+
   if __name__ == '__main__':
       main()
   ```
@@ -127,10 +133,12 @@ pytest
 1. Fork 本仓库
 2. 新建一个分支（推荐分支名与样式名相同）
 3. 在 `styles/` 目录下新建一个目录，名字与你的样式名相同，并创建完整的样式结构。
+
     ```sh
     # 你现在可以通过项目内预定的脚本创建一个styles
     ./scripts/new_style.sh <your_style_name>
     ```
+
 4. 请务必在提交前检查你的提交是否符合 [规范](#完整样式贡献)
 5. 提交 Pull Request，等待审核。
 

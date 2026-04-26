@@ -1,6 +1,5 @@
 name: Python Testing
 
-# 触发条件：push 到任何分支，或者针对 main 分支的 PR
 on:
   push:
     branches: [ "**" ]
@@ -23,7 +22,11 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -e ".[dev]" # 根据你的需求添加其他依赖
+        pip install -e ".[dev]"
+
+    - name: Lint Python with ruff
+      run: |
+        ruff check .
 
     - name: Run tests with pytest
       run: |

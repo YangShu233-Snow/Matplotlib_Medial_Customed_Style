@@ -1,8 +1,8 @@
-import matplotlib.pyplot as plt
-import numpy as np
-
 from pathlib import Path
 from typing import List, Tuple
+
+import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.axes import Axes
 
 root_path = Path(__file__).parent
@@ -13,11 +13,11 @@ def calculate_line_y_position(top_val: float, min_dis: int):
     return top_val + min_dis * 5
 
 def draw_stars(
-        ax: Axes, 
-        x_positions: List[Tuple[float, float]], 
-        stars_list: List[int], 
-        raw_data: List[Tuple[np.ndarray, np.ndarray]], 
-        means: List[Tuple[float, float]], 
+        ax: Axes,
+        x_positions: List[Tuple[float, float]],
+        stars_list: List[int],
+        raw_data: List[Tuple[np.ndarray, np.ndarray]],
+        means: List[Tuple[float, float]],
         errs: List[Tuple[float, float]],
         fraction_length: int = 20
     ):
@@ -32,7 +32,7 @@ def draw_stars(
 
         # 必须考虑到散点图的最大值，防止星号与散点重叠
         top_val = max((max(np.max(data), mean + err)), (max(np.max(con_data), con_mean + con_err)))
-        
+
         if (top_val - max_y_star_pos) > min_gap:
             max_y_line_pos = top_val
         else:
@@ -66,17 +66,17 @@ def generate_prism_colors(num_groups):
 def generate_jittered_x(y: np.ndarray, r_x: float, r_y: float) -> np.ndarray:
     n = len(y)
     x = np.zeros(n)
-    
+
     # 分别计算 X 和 Y 方向的安全直径
     D_x = 2 * r_x
-    D_y = 2 * r_y 
+    D_y = 2 * r_y
 
     sorted_indices = np.argsort(y, kind='stable')
     placed_indices = []
-    
+
     for idx in sorted_indices:
         y_i = y[idx]
-        
+
         # 1. 找到可能发生重叠的已放置点
         conflicts = []
         for prev_idx in reversed(placed_indices):
@@ -84,34 +84,34 @@ def generate_jittered_x(y: np.ndarray, r_x: float, r_y: float) -> np.ndarray:
             if dy >= D_y:
                 break
             conflicts.append(prev_idx)
-            
+
         if not conflicts:
             x[idx] = 0.0
             placed_indices.append(idx)
             continue
-            
+
         # 2. 计算禁区 (使用椭圆公式)
         intervals = []
         for c_idx in conflicts:
             dy = y_i - y[c_idx]
-            
+
             # 归一化 Y 距离的平方
             y_ratio_sq = (dy / D_y)**2
             if y_ratio_sq >= 1.0:
                 continue
-                
+
             # 根据椭圆方程计算 X 轴需要偏移的最小距离
             dx = D_x * np.sqrt(1.0 - y_ratio_sq) + 1e-8
-            
+
             x_c = x[c_idx]
             intervals.append((x_c - dx, x_c + dx))
-            
+
         # 3. 收集候选点
         candidates = [0.0]
         for iv in intervals:
             candidates.extend([iv[0], iv[1]])
         candidates.sort(key=lambda val: (abs(val), val))
-        
+
         # 4. 寻找最优位置
         chosen_x = 0.0
         for cand in candidates:
@@ -123,10 +123,10 @@ def generate_jittered_x(y: np.ndarray, r_x: float, r_y: float) -> np.ndarray:
             if is_valid:
                 chosen_x = cand
                 break
-                
+
         x[idx] = chosen_x
         placed_indices.append(idx)
-        
+
     return np.asarray(x, dtype=float)
 
 def main():
@@ -138,11 +138,11 @@ def main():
 
     # --- 示例数据 ---
     categories = [
-        ('Group A', ['CON', 'KO']), 
-        ('Group B', ['CON', 'KO-1', 'KO-2']), 
+        ('Group A', ['CON', 'KO']),
+        ('Group B', ['CON', 'KO-1', 'KO-2']),
         ('Group C', ['CON', 'KO'])
         ]
-    
+
     np.random.seed(12)
     all_raw_data = [
         [np.random.normal(1200, 300, 15), np.random.normal(3500, 400, 15)],
@@ -155,7 +155,7 @@ def main():
     for raw_data in all_raw_data:
         all_means.append([np.mean(data) for data in raw_data])
         all_errs.append([np.std(data, ddof=1) / np.sqrt(len(data)) for data in raw_data])
-    
+
     stars_marks = [
         [(0, 1, 3)],
         [(0, 1, 2), (0, 2, 3)],
@@ -191,7 +191,7 @@ def main():
         n_subgroups = len(category[1])
 
         colors = generate_prism_colors(n_subgroups)
-        
+
         all_x_positions = []
         for i in range(n_subgroups):
             x_current: float = x_base[group_index] + bar_width
@@ -202,19 +202,19 @@ def main():
             asymmetric_errs = [errs[i]]
             ax.bar(x_current, means[i], yerr=asymmetric_errs, width=bar_width, align='center',
                label=category[1][i], color=colors[i])
-        
+
         group_index += 1
 
         for i, data in enumerate(raw_data):
             x_jittered = generate_jittered_x(
-                data, 
-                r_x=len(categories) / fig_width * r / 36, 
+                data,
+                r_x=len(categories) / fig_width * r / 36,
                 r_y=np.max(all_means_extend) / fig_heigth * r / 36
             ) + all_x_positions[i]
-            
-            ax.scatter(x_jittered, data, 
-                    color='white',     
-                    edgecolor='black', 
+
+            ax.scatter(x_jittered, data,
+                    color='white',
+                    edgecolor='black',
                     alpha=0.75,
                     s=np.pi * r ** 2)
 
@@ -240,7 +240,7 @@ def main():
     ax.set_xlim(left=0)
     ax.set_ylim(bottom=0)
     ax.set_xticklabels([])
-    
+
     ax.set_xticks(all_bar_positions, minor=True)
     ax.set_xticklabels(all_groups_name, minor=True, rotation=45)
 

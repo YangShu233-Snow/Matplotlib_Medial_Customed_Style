@@ -1,7 +1,7 @@
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 import numpy as np
-
-from pathlib import Path
 from scipy.stats import f
 
 root_path = Path(__file__).parent
@@ -17,7 +17,7 @@ def main():
     img_name = 'example'
 
     np.random.seed(12)
-    
+
     # 模拟数据
     x_data = np.random.uniform(3, 10, size=50)
     y_data = x_data + np.random.uniform(-2, 4, size=50)
@@ -65,12 +65,12 @@ def main():
         verticalalignment='top',
         horizontalalignment='left'
     )
-    
+
     # --- labels and format ---
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.set_title(title)
-    
+
     save_dir = root_path / Path('./img')
     save_dir.mkdir(parents=True, exist_ok=True)
     save_paths = [save_dir / f"{img_name}.png", save_dir / f"{img_name}.pdf"]

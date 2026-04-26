@@ -1,0 +1,26 @@
+# rumdl configuration - Relaxed preset with project-specific overrides
+
+[global]
+exclude = [
+    ".git",
+    ".github",
+    "node_modules",
+    "vendor",
+    "dist",
+    "build",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    ".pytest_cache",
+]
+respect-gitignore = true
+
+disable = [
+    "MD013",  # Line length - scientific descriptions often exceed 80 chars
+    "MD033",  # Inline HTML - used for README badges and tables
+    "MD041",  # First line heading - not all files (e.g. readme snippets) need it
+    "MD045",  # Image alt text - example preview images don't benefit from alt text
+    "MD030",  # List marker spacing - *   vs *  is a style choice
+    "MD009",  # Trailing spaces - intentionally used for HTML layout in README
+    "MD046",  # Code block style - fenced code blocks are preferred
+
+]

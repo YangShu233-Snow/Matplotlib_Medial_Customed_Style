@@ -43,6 +43,7 @@ python example_split.py
 ## 🛠️ 如何替换为你自己的数据？
 
 ### 修改标准模式 (`example.py`)
+
 打开脚本，在 `main` 函数中调整以下参数：
 
 ```python
@@ -65,6 +66,7 @@ data = [
 ```
 
 ### 修改分离模式 (`example_split.py`)
+
 分离模式要求数据为成对的列表：
 
 ```python

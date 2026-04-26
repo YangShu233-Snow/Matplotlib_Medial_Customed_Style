@@ -1,10 +1,9 @@
-from typing import Dict, List, Literal
+from pathlib import Path
+from typing import List, Literal
 
-from matplotlib.axes import Axes
 import matplotlib.pyplot as plt
 import numpy as np
-
-from pathlib import Path
+from matplotlib.axes import Axes
 from sklearn.neighbors import KernelDensity
 
 type KernelType = Literal['gaussian', 'tophat', 'epanechnikov', 'exponential', 'linear', 'cosine']

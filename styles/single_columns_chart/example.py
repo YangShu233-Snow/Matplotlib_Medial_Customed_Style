@@ -1,8 +1,8 @@
-import matplotlib.pyplot as plt
-import numpy as np
-
 from pathlib import Path
 from typing import List
+
+import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.axes import Axes
 
 root_path = Path(__file__).parent
@@ -41,8 +41,8 @@ def main():
     errs = [300, 400]
     x_pos = np.arange(len(groups))
 
-    # 默认误差线仅作上半部分，若需要“工”字完整误差线，则asymmetric_errs = [errs] 
-    asymmetric_errs = [[0] * len(groups), errs] 
+    # 默认误差线仅作上半部分，若需要“工”字完整误差线，则asymmetric_errs = [errs]
+    asymmetric_errs = [[0] * len(groups), errs]
 
     # 具体图像尺寸大小按需求设置
     fig, ax = plt.subplots(figsize=(len(groups) * 1.5, 4), dpi=300)
@@ -52,7 +52,7 @@ def main():
     # 图表柱子的样式
     ax.bar(x_pos, means, yerr=asymmetric_errs, width=0.6,
             color=colors)
-    
+
     draw_stars(ax, groups_id=[1], stars=[3], means=means, errs=errs)
 
     ax.set_xlim(-0.6, len(groups) - 1 + 0.6)
@@ -64,7 +64,7 @@ def main():
     save_dir = root_path / Path('./img')
     save_dir.mkdir(parents=True, exist_ok=True)
     save_paths = [save_dir / f"{img_name}.png", save_dir / f"{img_name}.pdf"]
-    
+
     plt.tight_layout()
     for save_path in save_paths:
         plt.savefig(save_path, bbox_inches='tight')

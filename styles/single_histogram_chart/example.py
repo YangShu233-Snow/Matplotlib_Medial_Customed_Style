@@ -1,6 +1,7 @@
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 import numpy as np
-from pathlib import Path
 
 # 设置路径
 root_path = Path(__file__).parent
@@ -15,22 +16,22 @@ def calculate_optimal_bins(data: np.ndarray) -> int:
     n = len(data)
     if n < 2:
         return 1
-        
+
     # 计算四分位距 (IQR)
     q75, q25 = np.percentile(data, [75, 25])
     iqr = q75 - q25
-    
+
     if iqr == 0:
         # 如果 IQR 为 0，退化到 Sturges 准则
         return int(np.ceil(np.log2(n) + 1))
-    
+
     # Freedman-Diaconis 宽度计算公式: h = 2 * IQR * n^(-1/3)
     h = 2 * iqr * (n ** (-1/3))
     data_range = np.max(data) - np.min(data)
-    
+
     if h == 0:
         return 1
-        
+
     return int(np.ceil(data_range / h))
 
 def main():
@@ -62,12 +63,12 @@ def main():
     # 4. 保存图片
     save_dir = root_path / 'img'
     save_dir.mkdir(parents=True, exist_ok=True)
-    
+
     plt.tight_layout()
     for ext in ['png', 'pdf']:
         save_path = save_dir / f"{img_name}.{ext}"
         plt.savefig(save_path, bbox_inches='tight')
-    
+
     print(f"Optimal bins calculated: {optimal_bins}")
     print(f"Images saved to {save_dir}")
 

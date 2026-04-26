@@ -1,9 +1,8 @@
-from typing import List, Literal
+from pathlib import Path
+from typing import Literal
 
 import matplotlib.pyplot as plt
 import numpy as np
-
-from pathlib import Path
 from sklearn.neighbors import KernelDensity
 
 type KernelType = Literal['gaussian', 'tophat', 'epanechnikov', 'exponential', 'linear', 'cosine']
@@ -61,8 +60,8 @@ def main():
         # 优化坐标轴范围：留出充足余量以确保曲线平滑收口
         x_min, x_max = data.min(), data.max()
         margin = (x_max - x_min) * 0.4
-        x_pos = np.linspace(x_min - margin, x_max + margin, 1000) 
-        
+        x_pos = np.linspace(x_min - margin, x_max + margin, 1000)
+
         log_density = kde.score_samples(x_pos.reshape(-1, 1))
         density = np.exp(log_density)
 

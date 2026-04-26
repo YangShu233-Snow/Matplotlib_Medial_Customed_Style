@@ -1,9 +1,8 @@
-from typing import Dict, List, Literal
+from pathlib import Path
+from typing import List, Literal
 
 import matplotlib.pyplot as plt
 import numpy as np
-
-from pathlib import Path
 from matplotlib.axes import Axes
 from sklearn.neighbors import KernelDensity
 
@@ -39,9 +38,9 @@ def calculate_bandwidth(
         raise ValueError(f"Unknown bandwidth method: {method}")
 
 def draw_split_violinplot(
-        ax: Axes, 
-        data: List[List[np.ndarray]], 
-        points: int, 
+        ax: Axes,
+        data: List[List[np.ndarray]],
+        points: int,
         widths: float,
         labels: List[str] = ['Group 1', 'Group 2'],
         cut: float = 1.5,
@@ -54,7 +53,7 @@ def draw_split_violinplot(
 
     # 从 rcParams 的 prop_cycle 中获取颜色
     prop_cycle = plt.rcParams['axes.prop_cycle']
-    colors = [c['color'] for c in prop_cycle]   
+    colors = [c['color'] for c in prop_cycle]
 
     handles = []
     for idx, d in enumerate(data):
@@ -106,13 +105,11 @@ def draw_split_violinplot(
             if idx == 0:
                 from matplotlib.patches import Patch
                 handles.append(Patch(facecolor=color, edgecolor=color, label=label))
-    
+
     return handles
 
 def draw_sample_sizes(ax: Axes, data: List[List[np.ndarray]], x_positions: np.ndarray, cut: float):
     """在每个分离小提琴上方标注样本量 n=x/y"""
-    y_range = ax.get_ylim()[1] - ax.get_ylim()[0]
-    offset = y_range * 0.02
     offsets = list(map(
         lambda x: max(
             np.std(x[0]) * cut,
@@ -120,16 +117,16 @@ def draw_sample_sizes(ax: Axes, data: List[List[np.ndarray]], x_positions: np.nd
         ),
         data
     ))
-    
+
     for i, sub_data in enumerate(data):
         n_low = len(sub_data[0])
         n_high = len(sub_data[1])
         top_val = max(np.max(sub_data[0]), np.max(sub_data[1]))
         ax.text(
-            x_positions[i], 
-            top_val + offsets[i], 
-            f'n={n_low}/{n_high}', 
-            ha='center', 
+            x_positions[i],
+            top_val + offsets[i],
+            f'n={n_low}/{n_high}',
+            ha='center',
             va='bottom',
             fontsize=10
         )
@@ -163,8 +160,8 @@ def main():
     )
 
     handles = draw_split_violinplot(
-        ax, data, points, widths, 
-        labels=labels, 
+        ax, data, points, widths,
+        labels=labels,
         cut = cut,
         kernel=kernel,
         bandwidth_algorithm=bandwidth_algothrim,
