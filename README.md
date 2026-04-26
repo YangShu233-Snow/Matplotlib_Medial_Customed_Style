@@ -9,8 +9,8 @@
 
 <div>
    <p align="center">
-      <a href="https://github.com/YangShu233-Snow/Matplotlib_Medical_Customed_Styles/actions/workflows/pytest.yaml">
-         <img src="https://github.com/YangShu233-Snow/Matplotlib_Medical_Customed_Styles/actions/workflows/pytest.yaml/badge.svg" alt="pytest">
+      <a href="https://github.com/YangShu233-Snow/Matplotlib_Medical_Customed_Styles/actions/workflows/check.yaml">
+         <img src="https://github.com/YangShu233-Snow/Matplotlib_Medical_Customed_Styles/actions/workflows/check.yaml/badge.svg" alt="pytest">
       </a>
       <a href="https://matplotlib.org/">
          <img src="https://img.shields.io/badge/style-Matplotlib-blue?logo=python" alt="Matiplotlib">
