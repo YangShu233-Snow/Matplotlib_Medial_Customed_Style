@@ -12,6 +12,7 @@ from mmcs._quick_api import (
     ChartResult,
     bar_chart,
     box_chart,
+    box_violin_chart,
     scatter_chart,
     violin_chart,
 )
@@ -24,6 +25,7 @@ __all__ = [
     "ChartResult",
     "bar_chart",
     "box_chart",
+    "box_violin_chart",
     "scatter_chart",
     "violin_chart",
     "save_figure",
