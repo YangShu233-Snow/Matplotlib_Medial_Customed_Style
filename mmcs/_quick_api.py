@@ -10,7 +10,7 @@ import numpy as np
 
 from mmcs._context import StyleContext
 from mmcs._registry import Style
-from mmcs.charts import bar, boxplot, boxviolin, scatter, violin
+from mmcs.charts import bar, boxplot, boxviolin, density, histogram, scatter, violin
 
 
 class ChartResult:
@@ -208,6 +208,59 @@ def box_violin_chart(
         ax.set_xticklabels(list(groups))
 
     _label(ax, ylabel=ylabel, title=title)
+    _handle_save(fig, save_as)
+    return ChartResult(fig, stats={"n_groups": len(data)})
+
+
+def histogram_chart(
+    data: Any,
+    *,
+    style: Union[str, Style] = "graphpad_prism",
+    save_as: Optional[Union[str, Path]] = None,
+    figsize: Optional[tuple[float, float]] = None,
+    dpi: int = 300,
+    bins: Optional[int] = None,
+    bins_method: str = "freedman_diaconis",
+    xlabel: Optional[str] = None,
+    ylabel: Optional[str] = None,
+    title: Optional[str] = None,
+) -> ChartResult:
+    ctxt = StyleContext(style)
+    ctxt.apply(plt.rcParams, "histogram")
+    if figsize is None:
+        figsize = (6, 4)
+    fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
+
+    histogram.render(ax, data, bins=bins, bins_method=bins_method)
+
+    _label(ax, xlabel=xlabel, ylabel=ylabel, title=title)
+    _handle_save(fig, save_as)
+    return ChartResult(fig, stats={"n_points": len(np.asarray(data).ravel())})
+
+
+def density_chart(
+    data: Any,
+    groups: Optional[Sequence[str]] = None,
+    *,
+    style: Union[str, Style] = "graphpad_prism",
+    save_as: Optional[Union[str, Path]] = None,
+    figsize: Optional[tuple[float, float]] = None,
+    dpi: int = 300,
+    bandwidth: str = "scott",
+    fill: bool = True,
+    xlabel: Optional[str] = None,
+    ylabel: Optional[str] = None,
+    title: Optional[str] = None,
+) -> ChartResult:
+    ctxt = StyleContext(style)
+    ctxt.apply(plt.rcParams, "density")
+    if figsize is None:
+        figsize = (5, 5)
+    fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
+
+    density.render(ax, data, labels=groups, bandwidth=bandwidth, fill=fill)
+
+    _label(ax, xlabel=xlabel, ylabel=ylabel, title=title)
     _handle_save(fig, save_as)
     return ChartResult(fig, stats={"n_groups": len(data)})
 

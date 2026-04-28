@@ -13,6 +13,8 @@ from mmcs._quick_api import (
     bar_chart,
     box_chart,
     box_violin_chart,
+    density_chart,
+    histogram_chart,
     scatter_chart,
     violin_chart,
 )
@@ -26,6 +28,8 @@ __all__ = [
     "bar_chart",
     "box_chart",
     "box_violin_chart",
+    "density_chart",
+    "histogram_chart",
     "scatter_chart",
     "violin_chart",
     "save_figure",

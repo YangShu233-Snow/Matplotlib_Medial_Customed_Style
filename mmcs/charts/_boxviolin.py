@@ -8,8 +8,7 @@ from matplotlib.axes import Axes
 from matplotlib.patches import Patch
 
 from mmcs._utils._annotation import draw_sample_sizes
-from mmcs._utils._stats import BandwidthMethod, calculate_bandwidth
-from mmcs.charts._violin import KernelType, _kde
+from mmcs._utils._stats import BandwidthMethod, KernelType, calculate_bandwidth, kde
 
 
 def render(
@@ -28,7 +27,7 @@ def render(
 
     for idx, group in enumerate(data):
         group = np.asarray(group).ravel()
-        y_grid, density = _kde(group, points, cut, kernel, bandwidth)
+        y_grid, density = kde(group, points, cut, kernel, bandwidth)
         standard_density = (density / density.max()) * (v_widths / 2)
         pos = x_pos[idx]
 
@@ -80,7 +79,7 @@ def render_split(
         pos = x_pos[idx]
 
         for side_idx, (side, group) in enumerate(zip(("low", "high"), (lo, hi))):
-            y_grid, density = _kde(group, points, cut, kernel, bandwidth, override_bw=joint_bw)
+            y_grid, density = kde(group, points, cut, kernel, bandwidth, override_bw=joint_bw)
             std_density = (density / density.max()) * (v_widths / 2)
             color = colors[side_idx % len(colors)]
 
