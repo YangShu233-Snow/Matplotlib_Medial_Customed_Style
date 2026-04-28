@@ -8,6 +8,7 @@ from matplotlib.axes import Axes
 from matplotlib.patches import Patch
 from sklearn.neighbors import KernelDensity
 
+from mmcs._utils._annotation import draw_sample_sizes
 from mmcs._utils._stats import BandwidthMethod, calculate_bandwidth
 
 KernelType = Literal["gaussian", "tophat", "epanechnikov", "exponential", "linear", "cosine"]
@@ -22,6 +23,8 @@ def render(
     cut: float = 1.5,
     kernel: KernelType = "gaussian",
     bandwidth: BandwidthMethod = "scott",
+    show_n: bool = True,
+    sample_size_offset: float | None = None,
 ) -> Axes:
     x_pos = np.arange(len(data))
 
@@ -40,6 +43,10 @@ def render(
             linewidth=plt.rcParams.get("patch.linewidth", 0),
         )
 
+    if show_n:
+        kwargs = {"offset_factor": sample_size_offset} if sample_size_offset is not None else {}
+        draw_sample_sizes(ax, [np.asarray(d).ravel() for d in data], x_pos, offset_factor=cut, **kwargs)
+
     return ax
 
 
@@ -53,6 +60,7 @@ def render_split(
     kernel: KernelType = "gaussian",
     bandwidth: BandwidthMethod = "scott",
     labels: Optional[list[str]] = None,
+    show_n: bool = True,
 ) -> list[Patch]:
     x_pos = np.arange(len(data))
     prop_cycle = plt.rcParams["axes.prop_cycle"]
@@ -82,7 +90,32 @@ def render_split(
             for i, label in enumerate(labels):
                 handles.append(Patch(facecolor=colors[i % len(colors)], label=label))
 
+    if show_n:
+        _draw_split_sample_sizes(ax, data, x_pos, cut)
+
     return handles
+
+
+def _draw_split_sample_sizes(
+    ax: Axes,
+    data: Sequence[tuple[np.ndarray, np.ndarray]],
+    x_positions: np.ndarray,
+    cut: float,
+) -> None:
+    for i, (lo, hi) in enumerate(data):
+        lo = np.asarray(lo).ravel()
+        hi = np.asarray(hi).ravel()
+        offsets = [float(np.std(g) * cut) for g in (lo, hi)]
+        offset = max(offsets)
+        top_val = max(float(np.max(lo)), float(np.max(hi)))
+        ax.text(
+            x_positions[i],
+            top_val + offset,
+            f"n={len(lo)}/{len(hi)}",
+            ha="center",
+            va="bottom",
+            fontsize=10,
+        )
 
 
 def _kde(

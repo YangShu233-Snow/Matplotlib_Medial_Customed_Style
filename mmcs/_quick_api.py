@@ -131,6 +131,7 @@ def violin_chart(
     points: int = 60,
     widths: float = 0.7,
     cut: float = 1.5,
+    show_n: bool = True,
     title: Optional[str] = None,
     ylabel: Optional[str] = None,
 ) -> ChartResult:
@@ -143,13 +144,13 @@ def violin_chart(
     if split:
         handles = violin.render_split(
             ax, data, points=points, widths=widths, cut=cut,
-            bandwidth=bandwidth, labels=split_labels,
+            bandwidth=bandwidth, labels=split_labels, show_n=show_n,
         )
         if split_labels:
             ax.legend(handles=handles, frameon=False, loc="upper right")
     else:
         violin.render(ax, data, points=points, widths=widths,
-                      cut=cut, bandwidth=bandwidth)
+                      cut=cut, bandwidth=bandwidth, show_n=show_n)
 
     x_positions = np.arange(len(data))
     ax.set_xticks(x_positions)
