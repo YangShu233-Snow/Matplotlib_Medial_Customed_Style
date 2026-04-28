@@ -10,7 +10,16 @@ import numpy as np
 
 from mmcs._context import StyleContext
 from mmcs._registry import Style
-from mmcs.charts import bar, boxplot, boxviolin, density, histogram, scatter, violin
+from mmcs.charts import (
+    bar,
+    boxplot,
+    boxviolin,
+    density,
+    heatmap,
+    histogram,
+    scatter,
+    violin,
+)
 
 
 class ChartResult:
@@ -265,11 +274,54 @@ def density_chart(
     return ChartResult(fig, stats={"n_groups": len(data)})
 
 
+def heatmap_chart(
+    data: Any,
+    *,
+    row_labels: Optional[Sequence[str]] = None,
+    col_labels: Optional[Sequence[str]] = None,
+    style: Union[str, Style] = "deeptools",
+    save_as: Optional[Union[str, Path]] = None,
+    figsize: Optional[tuple[float, float]] = None,
+    dpi: int = 300,
+    vmin: float = -3.0,
+    vmax: float = 3.0,
+    cmap: str = "RdBu_r",
+    colorbar_label: str = "",
+    title: Optional[str] = None,
+) -> ChartResult:
+    ctxt = StyleContext(style)
+    ctxt.apply(plt.rcParams, "heatmap_clustered")
+    if figsize is None:
+        n_genes, n_samples = np.asarray(data).shape
+        figsize = (max(5, n_samples * 0.3), max(5, n_genes * 0.15))
+    fig = plt.figure(figsize=figsize, dpi=dpi)
+    gs = fig.add_gridspec(2, 2, width_ratios=[1, 5], height_ratios=[1, 5],
+                          wspace=0.01, hspace=0.01)
+
+    meta = heatmap.render(
+        fig, gs, data,
+        row_labels=row_labels, col_labels=col_labels,
+        vmin=vmin, vmax=vmax, cmap=cmap,
+        colorbar_label=colorbar_label,
+    )
+
+    if title:
+        fig.suptitle(title, y=0.95)
+
+    _handle_save_gs(fig, save_as)
+    return ChartResult(fig, stats={"n_genes": meta["row_order"], "n_samples": meta["col_order"]})
+
+
 def _handle_save(fig: plt.Figure, save_as: Optional[Union[str, Path]]) -> None:
     if save_as is not None:
         fig.savefig(Path(save_as), bbox_inches="tight")
     else:
         fig.tight_layout()
+
+
+def _handle_save_gs(fig: plt.Figure, save_as: Optional[Union[str, Path]]) -> None:
+    if save_as is not None:
+        fig.savefig(Path(save_as), bbox_inches="tight")
 
 
 def _label(
