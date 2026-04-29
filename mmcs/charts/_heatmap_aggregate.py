@@ -21,6 +21,26 @@ def render(
     ylabel: Optional[str] = None,
     interpolation: str = "nearest",
 ) -> None:
+    """Draw one or more aggregate heatmap panels.
+
+    Used for multi-panel genomic track visualizations. Each panel
+    is drawn in its own Axes. A shared color bar and genomic scale
+    bar are added to the last Axes.
+
+    Args:
+        axs: One or more matplotlib Axes, one per panel.
+        datasets: One 2-D array per panel (``features x samples``),
+            or a single 2-D array for one panel.
+        titles: Panel titles, one per dataset.
+        vmin: Colormap lower bound.
+        vmax: Colormap upper bound.
+        cmap: Colormap name. Falls back to ``image.cmap`` rcParam.
+        colorbar_label: Label for the shared color bar.
+        scale: Length of the genomic scale bar in data units.
+        scale_label: Text label for the scale bar (e.g. ``"1 kb"``).
+        ylabel: Y-axis label for the first panel.
+        interpolation: Image interpolation method.
+    """
     if cmap is None:
         cmap = plt.rcParams.get("image.cmap", "RdYlBu")
 

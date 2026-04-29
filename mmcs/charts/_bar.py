@@ -23,6 +23,31 @@ def render(
     scatter_data: Optional[Sequence[np.ndarray]] = None,
     scatter_r: float = 2.0,
 ) -> Axes:
+    """Draw a vertical bar chart.
+
+    Each bar represents one group mean. Supports error bars (asymmetric,
+    upper-only by default), significance stars, and optional individual
+    data points overlaid as a jittered scatter plot.
+
+    Args:
+        ax: The matplotlib Axes to draw on.
+        data: Bar heights, one value per bar.
+        groups: X-axis tick labels for each bar.
+        errors: Error bar magnitudes (e.g. SEM or SD).
+        upper_only: If True, error bars extend upward only (GraphPad
+            Prism convention).
+        colors: Bar fill colors. Must be same length as ``data``.
+        width: Bar width as a fraction of the unit spacing.
+        stars: Significance stars per bar. ``0`` means no stars,
+            ``3`` means ``***``, etc.
+        edge: If True, draw bar edges using ``patch.edgecolor`` rcParam.
+        scatter_data: Raw data arrays for jittered scatter overlay,
+            one per bar.
+        scatter_r: Marker radius for scatter points in points.
+
+    Returns:
+        The matplotlib Axes with the chart drawn.
+    """
     x_pos = np.arange(len(data))
     means = np.asarray(data)
 

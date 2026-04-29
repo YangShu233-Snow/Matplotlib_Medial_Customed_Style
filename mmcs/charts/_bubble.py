@@ -25,6 +25,30 @@ def render(
     min_bubble_size: float = 20,
     max_bubble_size: float = 100,
 ) -> None:
+    """Draw a bubble plot.
+
+    A multi-dimensional chart with 2x2 GridSpec layout:
+    - Main: bubble scatter (x = value, y = category, size = metric,
+      color = p-value or fold change)
+    - Top-right: bubble size legend
+    - Bottom-right: color bar for p-value
+
+    Args:
+        fig: The matplotlib Figure to draw on.
+        gs: A ``GridSpec`` of shape ``(2, 2)``.
+        categories: Y-axis category labels.
+        x_values: X-axis positions (e.g. enrichment scores).
+        bubble_sizes: Magnitudes that determine bubble radii.
+        color_values: Values mapped to bubble color (e.g. p-values).
+        xlabel: X-axis label.
+        color_highlight: If True, sort by ``color_values`` descending
+            and use a multi-color colormap.
+        legend_label: Title for the bubble size legend.
+        p_value_ticks: If True, use common p-value thresholds as
+            color bar ticks.
+        min_bubble_size: Minimum bubble area in points squared.
+        max_bubble_size: Maximum bubble area in points squared.
+    """
     if color_highlight:
         idx = np.argsort(color_values)[::-1]
         color_values = color_values[idx]

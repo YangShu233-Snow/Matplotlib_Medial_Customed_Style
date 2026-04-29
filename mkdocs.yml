@@ -1,0 +1,71 @@
+site_name: mmcs
+site_description: Publication-ready matplotlib styles for the medical and biological sciences
+repo_url: https://github.com/anomalyco/Matplotlib_Medical_Customized_Styles
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: zh
+  palette:
+    scheme: default
+    primary: indigo
+    accent: indigo
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - 入门指南: getting-started.md
+  - 样式系统: styles.md
+  - 快捷预设:
+      - 单列柱状图: profile/single-column.md
+      - 带散点的柱状图: profile/bar-scatter.md
+      - 分簇柱状图: profile/grouped-columns.md
+      - 分布图: profile/distribution.md
+      - 散点与相关性: profile/scatter.md
+      - 直方图与密度图: profile/histogram-density.md
+      - 气泡图与热图: profile/bubble-heatmap.md
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: zh
+          default: true
+          name: 中文
+          build: true
+        - locale: en
+          name: English
+          build: true
+          nav_translations:
+            Home: Home
+            "入门指南": Getting Started
+            "样式系统": Styles
+            "快捷预设": Profile Presets
+            "单列柱状图": Single Column
+            "带散点的柱状图": Bar with Scatter
+            "分簇柱状图": Grouped Columns
+            "分布图": Distribution
+            "散点与相关性": Scatter & Correlation
+            "直方图与密度图": Histogram & Density
+            "气泡图与热图": Bubble & Heatmap
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [mmcs]
+          options:
+            show_source: true
+            show_signature_annotations: true
+            docstring_style: google
+
+extra_css:
+  - assets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite

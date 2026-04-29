@@ -14,6 +14,22 @@ def render(
     ylabel: str = "Y Value",
     scatter_size: float = 2.0,
 ) -> Axes:
+    """Draw a scatter plot with linear regression line.
+
+    Computes and displays the regression equation, R-squared, and
+    p-value (from F-test) in the top-left corner of the axes.
+
+    Args:
+        ax: The matplotlib Axes to draw on.
+        x: X-coordinates.
+        y: Y-coordinates.
+        xlabel: X-axis label.
+        ylabel: Y-axis label.
+        scatter_size: Marker radius in points.
+
+    Returns:
+        The matplotlib Axes with the chart drawn.
+    """
     x_arr = np.asarray(x).ravel()
     y_arr = np.asarray(y).ravel()
     n = len(x_arr)

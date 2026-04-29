@@ -1,3 +1,10 @@
+"""Style discovery, metadata loading, and style application.
+
+This module provides the foundational style management system for mmcs.
+It auto-discovers ``.mplstyle`` files and their ``metadata.json`` from
+the ``styles/`` directory tree.
+"""
+
 from __future__ import annotations
 
 import json
@@ -47,23 +54,79 @@ def _discover_styles() -> dict[str, dict[str, Any]]:
 
 
 def list_styles() -> list[dict[str, Any]]:
+    """List all available styles with their metadata.
+
+    Returns:
+        A list of style info dicts. Each dict contains:
+        ``name``, ``category``, ``display_name``, ``chart_types``,
+        ``description``, ``base_style``, ``chart_styles``, ``style_dir``.
+
+    Example:
+        >>> styles = mmcs.list_styles()
+        >>> styles[0]["name"]
+        'graphpad_prism'
+    """
     return list(_discover_styles().values())
 
 
 def list_styles_for(chart_type: str) -> list[dict[str, Any]]:
+    """List styles that declare compatibility with a given chart type.
+
+    Args:
+        chart_type: The chart type name to filter by (e.g. ``"bar"``,
+            ``"heatmap"``).
+
+    Returns:
+        A list of style info dicts whose ``chart_types`` includes
+        ``chart_type``.
+
+    Example:
+        >>> mmcs.list_styles_for("bar")
+        [{"name": "graphpad_prism", ...}]
+    """
     return [s for s in _discover_styles().values() if chart_type in s["chart_types"]]
 
 
 def get_style(name: str) -> dict[str, Any] | None:
+    """Get metadata for a single style by name.
+
+    Args:
+        name: The style name (e.g. ``"graphpad_prism"``).
+
+    Returns:
+        The style info dict, or ``None`` if no style with that name exists.
+    """
     return _discover_styles().get(name)
 
 
 def clear_cache() -> None:
+    """Clear the internal style discovery cache.
+
+    Call this if you modify style files or metadata after import
+    and need to force re-discovery.
+    """
     global _STYLES_CACHE
     _STYLES_CACHE = None
 
 
 class Style:
+    """A named style that manages ``.mplstyle`` file loading.
+
+    ``Style`` wraps a style discovered from the ``styles/`` directory
+    and provides ``apply()`` to load its ``rcParams`` into matplotlib.
+
+    Args:
+        name: The style name. Must match a directory name under
+            ``mmcs/styles/``.
+
+    Raises:
+        ValueError: If ``name`` does not correspond to any installed style.
+
+    Example:
+        >>> style = Style("graphpad_prism")
+        >>> style.apply(plt.rcParams, chart_type="bar")
+    """
+
     def __init__(self, name: str):
         self._info = get_style(name)
         if self._info is None:
@@ -72,13 +135,31 @@ class Style:
 
     @property
     def name(self) -> str:
+        """The style's unique identifier (e.g. ``"graphpad_prism"``)."""
         return self._info["name"]
 
     @property
     def info(self) -> dict[str, Any]:
+        """A copy of the style's full metadata dict."""
         return dict(self._info)
 
     def apply(self, rcParams: dict | None = None, chart_type: str | None = None) -> None:
+        """Load the style's ``rcParams`` into matplotlib.
+
+    Loads the base ``.mplstyle`` file, then optionally a chart-type-specific
+    override. If ``chart_type`` is not declared in the style's metadata
+    (neither in ``chart_types`` nor as a ``chart_styles`` key), a
+    ``UserWarning`` is issued.
+
+        Args:
+            rcParams: Ignored. Provided for API compatibility with
+                ``matplotlib.rcParams``.
+            chart_type: Optional chart type to load a type-specific
+                style override (e.g. ``"bar"``, ``"violin"``).
+
+        Warns:
+            UserWarning: If ``chart_type`` is not known to this style.
+        """
         import matplotlib.pyplot as plt
 
         if chart_type is not None:

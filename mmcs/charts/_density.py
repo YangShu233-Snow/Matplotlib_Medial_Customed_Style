@@ -21,6 +21,26 @@ def render(
     fill_alpha: float = 0.3,
     n_points: int = 1000,
 ) -> Axes:
+    """Draw a KDE density plot.
+
+    One KDE curve per group. Supports multiple groups, automatic
+    color assignment from the style's prop_cycle, and optional
+    semi-transparent fill.
+
+    Args:
+        ax: The matplotlib Axes to draw on.
+        data: One array per group.
+        labels: Group labels for the legend.
+        bandwidth: KDE bandwidth selection rule.
+        kernel: KDE kernel shape.
+        fill: If True, fill the area under each curve.
+        fill_alpha: Transparency of the fill (0 = transparent,
+            1 = opaque).
+        n_points: Number of evaluation points for the KDE grid.
+
+    Returns:
+        The matplotlib Axes with the chart drawn.
+    """
     prop_cycle = plt.rcParams.get("axes.prop_cycle")
     colors = [e["color"] for e in prop_cycle] if prop_cycle else None
 

@@ -26,6 +26,29 @@ def render(
     min_samples: int = 4,
     scatter_size: float = 1.0,
 ) -> Axes:
+    """Draw a DBSCAN-clustered scatter plot.
+
+    Automatically estimates the DBSCAN ``eps`` parameter using the
+    knee-point method. Optionally draws convex hulls and confidence
+    ellipses for each cluster.
+
+    Args:
+        ax: The matplotlib Axes to draw on.
+        x: X-coordinates.
+        y: Y-coordinates.
+        xlabel: X-axis label.
+        ylabel: Y-axis label.
+        color_by_cluster: If True, color points by their cluster label.
+        show_convex_hull: If True, draw convex hull boundaries for
+            each cluster.
+        show_confidence_ellipse: If True, draw a 2-sigma confidence
+            ellipse for each cluster.
+        min_samples: Minimum samples for DBSCAN (controls sensitivity).
+        scatter_size: Marker radius in points.
+
+    Returns:
+        The matplotlib Axes with the chart drawn.
+    """
     x_arr = np.asarray(x).ravel()
     y_arr = np.asarray(y).ravel()
 

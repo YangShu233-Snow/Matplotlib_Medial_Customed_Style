@@ -18,6 +18,27 @@ def render(
     comparisons: Sequence[tuple[int, int, int, int]] | None = None,
     fraction_length: int = 20,
 ) -> Axes:
+    """Draw a clustered column chart with jittered scatter overlay.
+
+    Each category on the x-axis contains multiple sub-groups (bars).
+    Each bar is overlaid with jittered individual data points.
+    Optionally draws comparison lines with significance stars
+    between selected sub-groups.
+
+    Args:
+        ax: The matplotlib Axes to draw on.
+        groups: A list of ``(category_name, sub_group_names,
+            raw_data_arrays)`` tuples.
+        bar_width: Width of each bar.
+        scatter_r: Marker radius for jittered scatter points.
+        comparisons: A list of ``(cat_idx, sub_a_idx, sub_b_idx,
+            n_stars)`` tuples specifying which sub-groups to compare.
+        fraction_length: Scaling factor for comparison line and
+            star placement.
+
+    Returns:
+        The matplotlib Axes with the chart drawn.
+    """
     n_categories = len(groups)
     all_means: list[list[float]] = []
     all_errs: list[list[float]] = []

@@ -1,0 +1,58 @@
+/* ---- Preview image cards ---- */
+
+.preview-card {
+  display: inline-block;
+  max-width: 200px;
+  margin: 0 8px 12px 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  vertical-align: top;
+}
+.preview-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.preview-card figcaption {
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  color: #64748b;
+  text-align: center;
+  background: #f8fafc;
+}
+
+/* ---- Tables ---- */
+
+.md-typeset table:not([class]) {
+  border-collapse: collapse;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  display: table;
+  width: 100%;
+}
+.md-typeset table:not([class]) thead {
+  background: #3f51b5;
+  color: #ffffff;
+}
+.md-typeset table:not([class]) th {
+  padding: 10px 14px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+.md-typeset table:not([class]) td {
+  padding: 8px 14px;
+  font-size: 0.92em;
+  color: #374151;
+  text-align: center;
+}
+.md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+.md-typeset table:not([class]) tbody tr:hover {
+  background: #f1f5f9;
+}

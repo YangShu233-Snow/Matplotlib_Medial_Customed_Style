@@ -23,6 +23,30 @@ def render(
     linkage_metric: str = "euclidean",
     colorbar_label: str = "",
 ) -> dict[str, Any]:
+    """Draw a clustered heatmap with row and column dendrograms.
+
+    Uses hierarchical clustering (``scipy.cluster.hierarchy``) to
+    reorder rows and columns before displaying the heatmap matrix.
+    Dendrograms are drawn in the GridSpec margins.
+
+    Args:
+        fig: The matplotlib Figure to draw on.
+        gs: A ``GridSpec`` with shape ``(2, 2)`` (row dendrogram,
+            column dendrogram, heatmap, and empty corner).
+        data: 2-D array of shape ``(n_genes, n_samples)``.
+        row_labels: Labels for each row (gene names).
+        col_labels: Labels for each column (sample names).
+        vmin: Colormap lower bound.
+        vmax: Colormap upper bound.
+        cmap: Colormap name. Falls back to ``image.cmap`` rcParam.
+        linkage_method: Clustering linkage method.
+        linkage_metric: Distance metric.
+        colorbar_label: Label for the color bar.
+
+    Returns:
+        A dict with keys ``"row_order"`` and ``"col_order"``
+        containing the reordered indices.
+    """
     data = np.asarray(data)
     n_genes, n_samples = data.shape
 

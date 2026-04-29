@@ -1,3 +1,9 @@
+"""Figure export utilities.
+
+Provides ``save_figure`` for saving a figure in multiple formats
+(PNG, PDF) to a specified directory.
+"""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -15,6 +21,31 @@ def save_figure(
     bbox_inches: str = "tight",
     tight_layout: bool = True,
 ) -> list[Path]:
+    """Save a matplotlib figure in one or more formats.
+
+    Creates the output directory if it does not exist.
+
+    Args:
+        fig: The matplotlib Figure to save.
+        save_dir: Directory path for the output files.
+        img_name: Base filename (without extension).
+        formats: File extensions to save. Defaults to ``("png", "pdf")``.
+        dpi: Output resolution in dots per inch.
+        bbox_inches: ``bbox_inches`` argument passed to
+            ``fig.savefig()``.
+        tight_layout: Whether to call ``fig.tight_layout()`` before
+            saving.
+
+    Returns:
+        A list of ``Path`` objects for each saved file.
+
+    Example:
+        >>> fig, ax = plt.subplots()
+        >>> ax.plot([1, 2, 3])
+        >>> paths = save_figure(fig, "output", "my_plot")
+        >>> paths
+        [PosixPath('output/my_plot.png'), PosixPath('output/my_plot.pdf')]
+    """
     save_dir = Path(save_dir)
     save_dir.mkdir(parents=True, exist_ok=True)
 

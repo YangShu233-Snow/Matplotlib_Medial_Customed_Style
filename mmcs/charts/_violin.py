@@ -23,6 +23,28 @@ def render(
     show_n: bool = True,
     sample_size_offset: float | None = None,
 ) -> Axes:
+    """Draw a standard violin plot using KDE.
+
+    Uses a custom ``sklearn`` KDE instead of ``matplotlib.violinplot``
+    for better control over bandwidth and kernel selection.
+
+    Args:
+        ax: The matplotlib Axes to draw on.
+        data: One array per group. Each array contains raw values.
+        points: Number of grid points for the KDE evaluation.
+        widths: Violin width as a fraction of unit spacing.
+        cut: How many standard deviations beyond the data to extend
+            the KDE grid.
+        kernel: KDE kernel shape.
+        bandwidth: Bandwidth selection rule (``"scott"`` or
+            ``"silverman"``).
+        show_n: If True, annotate sample size above each violin.
+        sample_size_offset: Explicit vertical offset for the sample
+            size label. If None, computed from ``cut``.
+
+    Returns:
+        The matplotlib Axes with the chart drawn.
+    """
     x_pos = np.arange(len(data))
 
     for idx, group in enumerate(data):
@@ -59,6 +81,26 @@ def render_split(
     labels: Optional[list[str]] = None,
     show_n: bool = True,
 ) -> list[Patch]:
+    """Draw a split violin plot for paired comparisons.
+
+    Each violin is split vertically: one half for one condition
+    (e.g. treated) and the other half for the paired condition
+    (e.g. control). Colors are drawn from the style's prop_cycle.
+
+    Args:
+        ax: The matplotlib Axes to draw on.
+        data: One ``(low_group, high_group)`` tuple per violin.
+        points: Number of KDE grid points.
+        widths: Violin width fraction.
+        cut: KDE grid extension factor.
+        kernel: KDE kernel shape.
+        bandwidth: Bandwidth selection rule.
+        labels: Legend labels for the two halves (usually 2 elements).
+        show_n: If True, annotate ``n=<lo>/<hi>`` above each violin.
+
+    Returns:
+        A list of ``Patch`` handles for use with ``ax.legend()``.
+    """
     x_pos = np.arange(len(data))
     prop_cycle = plt.rcParams["axes.prop_cycle"]
     colors = [c["color"] for c in prop_cycle]

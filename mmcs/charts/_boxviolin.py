@@ -23,6 +23,25 @@ def render(
     bandwidth: BandwidthMethod = "scott",
     show_n: bool = True,
 ) -> Axes:
+    """Draw an overlaid box + violin plot.
+
+    The violin shows the full probability density (via KDE). The box
+    overlaid inside it shows the exact median and quartiles.
+
+    Args:
+        ax: The matplotlib Axes to draw on.
+        data: One array per group.
+        v_widths: Violin width fraction.
+        b_widths: Box width fraction (smaller than ``v_widths``).
+        points: Number of KDE grid points.
+        cut: KDE grid extension factor.
+        kernel: KDE kernel shape.
+        bandwidth: Bandwidth selection rule.
+        show_n: If True, annotate sample size.
+
+    Returns:
+        The matplotlib Axes with the chart drawn.
+    """
     x_pos = np.arange(len(data))
 
     for idx, group in enumerate(data):
@@ -66,6 +85,26 @@ def render_split(
     labels: Optional[list[str]] = None,
     show_n: bool = True,
 ) -> list[Patch]:
+    """Draw a split box + violin plot for paired comparisons.
+
+    Each group is split into two halves (low/high). Both the violin
+    KDE and the box plot are drawn as overlapped split halves.
+
+    Args:
+        ax: The matplotlib Axes to draw on.
+        data: One ``(lo, hi)`` tuple per group.
+        v_widths: Violin width fraction.
+        b_widths: Box width fraction.
+        points: Number of KDE grid points.
+        cut: KDE grid extension factor.
+        kernel: KDE kernel shape.
+        bandwidth: Bandwidth selection rule.
+        labels: Legend labels (usually 2 elements).
+        show_n: If True, annotate sample size.
+
+    Returns:
+        A list of ``Patch`` handles for use with ``ax.legend()``.
+    """
     x_pos = np.arange(len(data))
     prop_cycle = plt.rcParams["axes.prop_cycle"]
     colors = [c["color"] for c in prop_cycle]

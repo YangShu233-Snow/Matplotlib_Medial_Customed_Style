@@ -1,3 +1,10 @@
+"""Annotation and data-jittering helpers.
+
+Provides ``draw_sample_sizes`` for adding ``n=...`` labels above
+chart elements and ``jitter`` for computing non-overlapping scatter
+positions.
+"""
+
 from __future__ import annotations
 
 from typing import List, Optional
@@ -14,6 +21,22 @@ def draw_sample_sizes(
     offset_factor: Optional[float] = None,
     fontsize: float = 10,
 ) -> None:
+    """Annotate sample sizes above each group of data points.
+
+    Adds ``n=<count>`` text labels above the maximum value of each
+    data array.
+
+    Args:
+        ax: The matplotlib Axes to draw on.
+        data: One array per group. The length of each array determines
+            the ``n`` value.
+        x_positions: X-axis positions for the labels, one per group.
+        offset: Absolute vertical offset from the top of each group's
+            data. If set, ``offset_factor`` is ignored.
+        offset_factor: Vertical offset as a multiple of the group's
+            standard deviation. Ignored if ``offset`` is set.
+        fontsize: Font size for the label text.
+    """
     for i, d in enumerate(data):
         n = len(d)
         top_val = np.max(d)
@@ -41,6 +64,21 @@ def jitter(
     r_x: float,
     r_y: float,
 ) -> np.ndarray:
+    """Compute non-overlapping jitter positions for scatter overlay.
+
+    Uses a greedy rectangle-packing algorithm: data points are sorted
+    by y-value and each point is assigned the x-offset closest to zero
+    that does not overlap any already-placed point's bounding box.
+
+    Args:
+        y: Y-values of the data points.
+        r_x: Half-width of the marker bounding box in data units.
+        r_y: Half-height of the marker bounding box in data units.
+
+    Returns:
+        An array of x-offsets (same length as ``y``) to be added to
+        each point's nominal x-position.
+    """
     n = len(y)
     x = np.zeros(n)
     D_x = 2 * r_x
