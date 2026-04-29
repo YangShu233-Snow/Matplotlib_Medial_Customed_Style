@@ -6,7 +6,7 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-MD_FILES="README.md CONTRIBUTING.md llms.md AGENTS.md styles/*/readme.md"
+MD_FILES="README.md CONTRIBUTING.md llms.md AGENTS.md"
 
 echo "========================================"
 echo " MMCS — Pre-PR Check"

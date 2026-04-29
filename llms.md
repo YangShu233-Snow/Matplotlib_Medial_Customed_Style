@@ -16,7 +16,7 @@ If you are an AI Agent participating in the development of this project, you **M
 
 ## 📁 Project Structure
 
-\`\`\`text
+```text
 mmcs/                            # Python package (pip install mmcs)
   __init__.py                    # Public API: profile, chart functions, Style, StyleContext
   _registry.py                   # Style discovery + metadata loading
